@@ -1,27 +1,31 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Register = ({ onLogin }) => {
   const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    password: ''
+    username: "",
+    email: "",
+    password: "",
   });
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const { username, email, password } = formData;
 
-  const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
+  const onChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const onSubmit = async e => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/register', formData);
-      localStorage.setItem('token', res.data.token);
+      const res = await axios.post(
+        "http://localhost:5000/api/auth/register",
+        formData,
+      );
+      localStorage.setItem("token", res.data.token);
       onLogin();
-      navigate('/');
+      navigate("/");
     } catch (err) {
       setError(err.response.data.message);
     }
@@ -30,7 +34,7 @@ const Register = ({ onLogin }) => {
   return (
     <div className="card">
       <h2>Register</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {error && <p style={{ color: "red" }}>{error}</p>}
       <form onSubmit={onSubmit}>
         <div className="form-group">
           <label htmlFor="username">Username</label>
@@ -65,7 +69,9 @@ const Register = ({ onLogin }) => {
             required
           />
         </div>
-        <button type="submit" className="btn">Register</button>
+        <button type="submit" className="btn">
+          Register
+        </button>
       </form>
     </div>
   );

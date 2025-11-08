@@ -1,26 +1,30 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Login = ({ onLogin }) => {
   const [formData, setFormData] = useState({
-    email: '',
-    password: ''
+    email: "",
+    password: "",
   });
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const { email, password } = formData;
 
-  const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
+  const onChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const onSubmit = async e => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/login', formData);
-      localStorage.setItem('token', res.data.token);
+      const res = await axios.post(
+        "http://localhost:5000/api/auth/login",
+        formData,
+      );
+      localStorage.setItem("token", res.data.token);
       onLogin();
-      navigate('/');
+      navigate("/");
     } catch (err) {
       setError(err.response.data.message);
     }
@@ -32,7 +36,9 @@ const Login = ({ onLogin }) => {
         <div className="card login-card">
           <h2>Welcome Back</h2>
           <p>Please sign in to your account</p>
-          {error && <p style={{ color: '#dc3545', fontWeight: '500' }}>{error}</p>}
+          {error && (
+            <p style={{ color: "#dc3545", fontWeight: "500" }}>{error}</p>
+          )}
           <form onSubmit={onSubmit}>
             <div className="form-group">
               <label htmlFor="email">Email Address</label>
@@ -58,9 +64,13 @@ const Login = ({ onLogin }) => {
                 required
               />
             </div>
-            <button type="submit" className="btn login-btn">Sign In</button>
+            <button type="submit" className="btn login-btn">
+              Sign In
+            </button>
           </form>
-          <p className="register-link">Don't have an account? <a href="/register">Create one here</a></p>
+          <p className="register-link">
+            Don't have an account? <a href="/register">Create one here</a>
+          </p>
         </div>
       </div>
     </div>

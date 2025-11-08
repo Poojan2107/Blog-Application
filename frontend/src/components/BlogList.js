@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 const BlogList = () => {
   const [blogs, setBlogs] = useState([]);
@@ -9,7 +9,7 @@ const BlogList = () => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/blogs');
+        const res = await axios.get("http://localhost:5000/api/blogs");
         setBlogs(res.data);
       } catch (err) {
         console.error(err);
@@ -24,24 +24,35 @@ const BlogList = () => {
 
   return (
     <div>
-      <h2 style={{ marginBottom: '30px', fontSize: '28px', fontWeight: '600' }}>All Blogs</h2>
+      <h2 style={{ marginBottom: "30px", fontSize: "28px", fontWeight: "600" }}>
+        All Blogs
+      </h2>
       {blogs.length === 0 ? (
-        <div className="card" style={{ textAlign: 'center', padding: '60px 30px' }}>
-          <h3 style={{ marginBottom: '15px' }}>No blogs found</h3>
-          <p style={{ color: '#666666', marginBottom: '0' }}>Be the first to create a blog post!</p>
+        <div
+          className="card"
+          style={{ textAlign: "center", padding: "60px 30px" }}
+        >
+          <h3 style={{ marginBottom: "15px" }}>No blogs found</h3>
+          <p style={{ color: "#666666", marginBottom: "0" }}>
+            Be the first to create a blog post!
+          </p>
         </div>
       ) : (
         <div className="cards-container">
-          {blogs.map(blog => (
+          {blogs.map((blog) => (
             <div key={blog._id} className="card">
               <h3>{blog.title}</h3>
               <div className="blog-content">{blog.content}</div>
               <div className="blog-meta">
                 <span className="blog-author">By: {blog.author.username}</span>
-                <span className="blog-date">{new Date(blog.createdAt).toLocaleDateString()}</span>
+                <span className="blog-date">
+                  {new Date(blog.createdAt).toLocaleDateString()}
+                </span>
               </div>
               <div className="card-actions">
-                <Link to={`/blog/${blog._id}`} className="btn">Read More</Link>
+                <Link to={`/blog/${blog._id}`} className="btn">
+                  Read More
+                </Link>
               </div>
             </div>
           ))}

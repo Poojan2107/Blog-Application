@@ -14,6 +14,7 @@ A full-stack blog application built with the MERN stack (MongoDB, Express.js, Re
 ## Tech Stack
 
 ### Backend
+
 - **Node.js** - Runtime environment
 - **Express.js** - Web framework
 - **MongoDB** - NoSQL database
@@ -22,6 +23,7 @@ A full-stack blog application built with the MERN stack (MongoDB, Express.js, Re
 - **bcryptjs** - Password hashing
 
 ### Frontend
+
 - **React** - UI library
 - **React Router** - Client-side routing
 - **Axios** - HTTP client
@@ -70,12 +72,14 @@ blog-app/
 ## Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone <repository-url>
    cd blog-app
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm run install-all
    ```
@@ -91,27 +95,34 @@ blog-app/
 ## Running the Application
 
 ### Development Mode
+
 ```bash
 npm run dev
 ```
+
 This will start both backend (with nodemon) and frontend servers concurrently.
 
 ### Production Mode
+
 ```bash
 npm start
 ```
+
 This will start both backend and frontend servers concurrently.
 
 ### Manual Start
+
 You can also start them separately:
 
 **Backend:**
+
 ```bash
 cd backend
 npm start
 ```
 
 **Frontend:**
+
 ```bash
 cd frontend
 npm start
@@ -120,11 +131,13 @@ npm start
 ## API Endpoints
 
 ### Authentication
+
 - `POST /api/auth/register` - Register a new user
 - `POST /api/auth/login` - Login user
 - `GET /api/auth/profile` - Get user profile (protected)
 
 ### Blogs
+
 - `GET /api/blogs` - Get all blogs
 - `GET /api/blogs/:id` - Get single blog
 - `POST /api/blogs` - Create new blog (protected)
