@@ -1,0 +1,14 @@
+node_modules
+build
+dist
+coverage
+.git
+.cache
+frontend/build
+*.min.js
+*.log
+.env
+.env.*
+.vscode
+.idea
+.DS_Store

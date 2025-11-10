@@ -5,9 +5,12 @@
   "scripts": {
     "start": "concurrently \"cd backend && npm start\" \"cd frontend && npm start\"",
     "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm start\"",
-    "install-all": "npm install && cd backend && npm install && cd ../frontend && npm install"
+    "install-all": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    "format": "npx prettier --write \"frontend/**/*.{js,jsx,css,json,md,html}\" \"backend/**/*.{js,json,md}\" \"*.json\"",
+    "format:check": "npx prettier --check \"frontend/**/*.{js,jsx,css,json,md,html}\" \"backend/**/*.{js,json,md}\" \"*.json\""
   },
   "devDependencies": {
-    "concurrently": "^8.2.0"
+    "concurrently": "^8.2.0",
+    "prettier": "^2.8.8"
   }
 }
