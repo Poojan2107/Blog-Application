@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Register = ({ onLogin }) => {
   const [formData, setFormData] = useState({
@@ -21,7 +21,7 @@ const Register = ({ onLogin }) => {
     try {
       const res = await axios.post(
         "http://localhost:5000/api/auth/register",
-        formData,
+        formData
       );
       localStorage.setItem("token", res.data.token);
       onLogin();
@@ -32,47 +32,60 @@ const Register = ({ onLogin }) => {
   };
 
   return (
-    <div className="card">
-      <h2>Register</h2>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      <form onSubmit={onSubmit}>
-        <div className="form-group">
-          <label htmlFor="username">Username</label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            value={username}
-            onChange={onChange}
-            required
-          />
+    <div className="login-page">
+      <div className="login-container">
+        <div className="card login-card">
+          <h2>Welcome to MERN Blog</h2>
+          <p>Create your account to get started</p>
+          {error && (
+            <p style={{ color: "#dc3545", fontWeight: "500" }}>{error}</p>
+          )}
+          <form onSubmit={onSubmit}>
+            <div className="form-group">
+              <label htmlFor="username">Username</label>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                value={username}
+                onChange={onChange}
+                placeholder="Enter your username"
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="email">Email Address</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={email}
+                onChange={onChange}
+                placeholder="Enter your email"
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="password">Password</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                value={password}
+                onChange={onChange}
+                placeholder="Enter your password"
+                required
+              />
+            </div>
+            <button type="submit" className="btn login-btn">
+              Create Account
+            </button>
+          </form>
+          <p className="register-link">
+            Already have an account? <a href="/login">Sign in here</a>
+          </p>
         </div>
-        <div className="form-group">
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={email}
-            onChange={onChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={password}
-            onChange={onChange}
-            required
-          />
-        </div>
-        <button type="submit" className="btn">
-          Register
-        </button>
-      </form>
+      </div>
     </div>
   );
 };
